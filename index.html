@@ -157,9 +157,26 @@
 
     <section id="portfolio" class="portfolio">
         <div class="container">
-            <h2 class="section-title text-center">My Works</h2>
-            <div class="py-5 bg-light">
-                <h2 class="showcase-text">Soon to be added</h2>
+            <h2 class="section-title text-center">Personal Works</h2>
+            <div class="works">
+                <div class="works--item">
+                    <div class="overlay">
+                        <div class="buttons-wrapper">
+                            <a role="button" class="overlay--button view-work outline" data-type="image">View as image</a>
+                            <a role="button" class="overlay--button view-work solid" data-type="figma">View on figma</a>
+                        </div>
+                    </div>
+                    <img src="img/works/thumbnails/ArtStudio-thumbnail.jpg" data-figma="https://www.figma.com/file/QcsVxECCSAGZglyWGZWbhs/ArtStudio" img-viewer class="works--item--img image-view">
+                </div>
+                <div class="works--item">
+                    <div class="overlay">
+                        <div class="buttons-wrapper">
+                            <a role="button" class="overlay--button view-work outline" data-type="image">View as image</a>
+                            <a role="button" class="overlay--button view-work solid" data-type="figma">View on figma</a>
+                        </div>
+                    </div>
+                    <img src="img/works/thumbnails/CrimsonHaven-thumbnail.jpg" data-figma="https://www.figma.com/file/zs8i418VMGqcxSYmYJMshb/CrimsonHaven" img-viewer class="works--item--img image-view">
+                </div>
             </div>
         </div>
     </section>
@@ -207,9 +224,14 @@
         </div>
     </section>
 
+    <div id="img-viewer" class="img-viewer">
+        <span class="close">&times;</span>
+        <img class="img-viewer--content" id="full-img">
+    </div>
+
     <script src="js/jquery-3.3.1.min.js"></script>
     <!-- <script src="js/bootstrap.min.js"></script>
-    <script src="js/popper.min.js"></script> -->
+        <script src="js/popper.min.js"></script> -->
 
     <script>
         $(document).ready(function(){
@@ -234,6 +256,40 @@
                 $('html,body').animate({
                     scrollTop: $(href).offset().top
                 },'slow');
+            });
+
+            $(".view-work").click(function(){
+                let type = $(this).attr('data-type');
+                let image = $(this).closest(".works--item").find('.image-view');
+
+                switch (type) {
+                    case 'image':
+                        let src = image.attr('src');
+
+                        src = src.replace("/thumbnails","");
+                        src = src.replace("-thumbnail","");
+                        src = src.replace("jpg","png");
+
+                        $("#full-img").attr("src", src);
+                        $('#img-viewer').show();
+                        $("body").css("overflow","hidden");
+
+                        break;
+                    case 'figma':
+                        
+                        let link = image.attr('data-figma');
+
+                        window.open(link,'_blank');
+
+                        break;
+                }
+                
+                return;
+            });
+
+            $("#img-viewer .close").click(function(){
+                $('#img-viewer').hide();
+                $("body").css("overflow","unset");
             });
             
         })

@@ -500,6 +500,128 @@ header .menu-links.show .nav-links-ul {
   color: #212121;
 }
 
+.portfolio .works {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.portfolio .works--item {
+  overflow: hidden;
+  width: 300px;
+  height: 300px;
+  position: relative;
+}
+
+.portfolio .works--item .overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  -webkit-transition: background-color 0.4s ease;
+  transition: background-color 0.4s ease;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.portfolio .works--item .overlay .buttons-wrapper {
+  visibility: hidden;
+  padding: 1rem;
+  background-color: #ffffff;
+  -webkit-transform: scale(0.1);
+          transform: scale(0.1);
+  -webkit-transition: -webkit-transform 300ms ease;
+  transition: -webkit-transform 300ms ease;
+  transition: transform 300ms ease;
+  transition: transform 300ms ease, -webkit-transform 300ms ease;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+          box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.portfolio .works--item .overlay--button {
+  visibility: hidden;
+  display: block;
+  padding: 1rem 2rem;
+  min-width: 160px;
+  font-size: 80%;
+  text-transform: uppercase;
+  cursor: pointer;
+  -webkit-transform: scale(0.1);
+          transform: scale(0.1);
+  -webkit-transition: -webkit-transform 300ms ease;
+  transition: -webkit-transform 300ms ease;
+  transition: transform 300ms ease;
+  transition: transform 300ms ease, -webkit-transform 300ms ease;
+}
+
+.portfolio .works--item .overlay--button.solid {
+  background-color: #35BB9B;
+  color: #ffffff;
+}
+
+.portfolio .works--item .overlay--button.outline {
+  border: 1px solid #35BB9B;
+  color: #35BB9B;
+}
+
+.portfolio .works--item .overlay--button:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.portfolio .works--item--img {
+  vertical-align: bottom;
+  width: 300px;
+  -webkit-transition: transform 0.3s ease;
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+
+.portfolio .works--item:hover .overlay {
+  background-color: transparent;
+}
+
+.portfolio .works--item:hover .overlay .buttons-wrapper {
+  visibility: visible;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.portfolio .works--item:hover .overlay--button {
+  visibility: visible;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.portfolio .works--item:hover .works--item--img {
+  -webkit-transform: scale(1.1) translateZ(0);
+          transform: scale(1.1) translateZ(0);
+}
+
 .contact .container {
   position: relative;
   padding-top: 5rem;
@@ -557,12 +679,87 @@ header .menu-links.show .nav-links-ul {
   color: #35BB9B;
 }
 
+.img-viewer {
+  display: none;
+  position: fixed;
+  z-index: 1060;
+  padding-block: 5rem;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.img-viewer .close {
+  position: fixed;
+  top: 15px;
+  right: 35px;
+  color: #ffffff;
+  font-size: 40px;
+  font-weight: bold;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.img-viewer--content {
+  margin: auto;
+  display: block;
+  width: 100%;
+  padding-inline: 1rem;
+  -webkit-animation-name: zoom;
+          animation-name: zoom;
+  -webkit-animation-duration: 0.4s;
+          animation-duration: 0.4s;
+}
+
+@-webkit-keyframes zoom {
+  from {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes zoom {
+  from {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
 /*******************************/
 /*** START OF MEDIA QUERIES ***/
 /******************************/
 @media only screen and (min-width: 768px) {
   .p-md-35px {
     padding: 35px !important;
+  }
+  .img-viewer {
+    padding-block: 3rem;
+  }
+  .img-viewer--content {
+    width: 80%;
+    max-width: 700px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .portfolio .works--item {
+    width: 500px;
+    height: 500px;
+  }
+  .portfolio .works--item--img {
+    width: 500px;
   }
 }
 /*# sourceMappingURL=main.css.map */
